@@ -83,12 +83,12 @@ jobs:
         rm -f refreshtoken.txt
         rm -f Secret.txt
     - name: Commit #Upload a new refresh_token to the repository
-      env: 
-        GIT_NAME: ${{ secrets.GIT_NAME }} # git_name prepare
-        GIT_EMAIL: ${{ secrets.GIT_EMAIL }} # git_email prepare
+      #env: 
+        #GIT_NAME: ${{ secrets.GIT_NAME }} # git_name prepare
+        #GIT_EMAIL: ${{ secrets.GIT_EMAIL }} # git_email prepare
       run: |
-        git config --global user.name $GIT_NAME
-        git config --global user.email $GIT_EMAIL
+        #git config --global user.name $GIT_NAME
+        #git config --global user.email $GIT_EMAIL
         git add .
         git commit -m "Update new refresh token" -a
     - name: Push changes
