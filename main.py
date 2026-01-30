@@ -38,7 +38,7 @@ calls = [
 
 
 def get_access_token():
-    access_token =  os.getenv('AZURE_ACCESS_TOKEN')  # Get the token from the environment variable set by the GitHub Action
+    access_token = os.getenv('AZURE_ACCESS_TOKEN')  # Get the token from the environment variable set by the GitHub Action
     return access_token
 
 def main():
@@ -47,7 +47,7 @@ def main():
     access_token = get_access_token()
     session = requests.Session()
     session.headers.update({
-        'Authorization': f'Bearer {access_token}',
+        'Authorization': "Bearer" + access_token',
         'Content-Type': 'application/json'
     })
     num = 0
