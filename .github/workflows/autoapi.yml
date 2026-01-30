@@ -67,7 +67,7 @@ jobs:
     - name: Get access token
       id: token
       run: |
-          echo "::set-output name=token::$(az account get-access-token --query accessToken -o tsv)"
+          echo "::set-output name=token::$(az account get-access-token --query accessToken -o tsv --resource-type ms-graph)"
         
     - name: Test Api #ApiCall
       env:
