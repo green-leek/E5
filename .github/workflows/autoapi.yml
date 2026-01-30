@@ -67,11 +67,11 @@ jobs:
     - name: Get access token
       id: token
       run: |
-          echo "token=$(az account get-access-token --query accessToken -o tsv --resource-type ms-graph)" >> $GITHUB_ENV
+          echo "AZURE_ACCESS_TOKEN=$(az account get-access-token --query accessToken -o tsv --resource-type ms-graph)" >> $GITHUB_ENV
         
     - name: Test Api #ApiCall
       env:
-          AZURE_ACCESS_TOKEN: ${{ env.token }}
+          AZURE_ACCESS_TOKEN: ${{ env.AZURE_ACCESS_TOKEN }}
       run: | 
         echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.log
         python3 temp.py
