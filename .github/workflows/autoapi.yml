@@ -49,10 +49,16 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         allow-no-subscriptions: true
-
+        
+    - id: login
+      name: Adquiring Access Token
+      uses: Azure/azure-resource-login-action@v1.1.0
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
     - name: Copy access token to env
       run: |
-         echo "AZURE_ACCESS_TOKEN=$(az account get-access-token --resource-type ms-graph --query accessToken -o tsv)" >> $GITHUB_ENV
+         echo "AZURE_ACCESS_TOKEN=${{ secrets.AZURE_CREDENTIALS }} >> $GITHUB_ENV
 
     - name: Debug Access Token
       run: |
