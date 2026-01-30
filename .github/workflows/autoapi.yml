@@ -71,7 +71,7 @@ jobs:
         
     - name: Test Api #ApiCall
       env:
-          AZURE_ACCESS_TOKEN: ${{ steps.token.outputs.token }}
+          AZURE_ACCESS_TOKEN: ${{ env.token }}
       run: | 
         echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.log
         python3 temp.py
