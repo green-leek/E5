@@ -50,8 +50,8 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         allow-no-subscriptions: true
 
-     - name: Copy access token to env
-       run: |
+    - name: Copy access token to env
+      run: |
          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
          echo "AZURE_ACCESS_TOKEN=$(az account get-access-token --resource https://graph.microsoft.com --query accessToken -o tsv)" >> $GITHUB_ENV
       
