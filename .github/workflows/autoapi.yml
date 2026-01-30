@@ -13,7 +13,15 @@ on:
     - cron: "10 */2 * * *"
   watch:
     types: [started]
-   
+
+permissions: 
+  id-token: write
+  contents: read
+
+env:
+  AZURE_WEBAPP_NAME: Webapp
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,10 +30,10 @@ jobs:
     name: Build and call API
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         persist-credentials: true # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.      
     - name: Set up Python #Install python
       uses: actions/setup-python@v4
       with:
@@ -34,6 +42,14 @@ jobs:
     - name: Install requests #Installation requests
       run: |
         pip install requests
+    
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      
     - name: Read config from secrets  #Read Secret
       env: 
         CONFIG_ID: ${{ secrets.CONFIG_ID }} # secrets_id prepare
@@ -75,6 +91,11 @@ jobs:
         else
           echo "No webhook file found to clean up."
         fi
+
+    - name: logout
+      run: |
+        az logout
+        
     - name: Delete secrets config #Delete secret config
       run: | 
         rm -f temp.py
