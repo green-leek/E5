@@ -50,19 +50,9 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         allow-no-subscriptions: true
 
-    - name: Read config from secrets  #Read Secret
-      env: 
-        CONFIG_ID: ${{ secrets.CONFIG_ID }} # secrets_id prepare
-        CONFIG_KEY: ${{ secrets.CONFIG_KEY }} # secrets_key prepare
-        REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }} # refresh_token prepare
+    - name: Copy to temp
       run: | 
         cp main.py temp.py
-        echo $CONFIG_ID > configid.txt
-        echo $CONFIG_KEY > configkey.txt
-        echo $REFRESH_TOKEN > refreshtoken.txt
-        sed -i '10 r configid.txt' temp.py
-        sed -i '12 r configkey.txt' temp.py
-        sed -i '14 r refreshtoken.txt' temp.py
 
     - name: Get access token
       id: token
@@ -107,10 +97,7 @@ jobs:
     - name: Delete secrets config #Delete secret config
       run: | 
         rm -f temp.py
-        rm -f configid.txt
-        rm -f configkey.txt
-        rm -f refreshtoken.txt
-        rm -f Secret.txt
+
     - name: Commit #Upload a new refresh_token to the repository
       env: 
          GIT_NAME: ${{ secrets.GIT_NAME }} # git_name prepare
