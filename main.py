@@ -47,7 +47,7 @@ def main():
     access_token = get_access_token()
     session = requests.Session()
     session.headers.update({
-        'Authorization': "Bearer" + access_token',
+        'Authorization': "Bearer" + 'access_token',
         'Content-Type': 'application/json'
     })
     num = 0
