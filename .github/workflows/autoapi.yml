@@ -18,10 +18,6 @@ permissions:
   id-token: write
   contents: write
 
-env:
-  AZURE_WEBAPP_NAME: Webapp
-  AZURE_WEBAPP_PACKAGE_PATH: '.'
-
 jobs:
   build:
     runs-on: ubuntu-latest
