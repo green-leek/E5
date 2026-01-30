@@ -53,7 +53,7 @@ def main():
             access_token = get_access_token(endpoint)
             session = requests.Session()
             session.headers.update({
-                'Authorization': 'access_token',
+                'Authorization': f"Bearer {access_token}",
                 'Content-Type': 'application/json'
             })
             response = session.get(endpoint)
