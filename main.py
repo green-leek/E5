@@ -39,6 +39,7 @@ calls = [
 
 def get_access_token():
     access_token = os.getenv('AZURE_ACCESS_TOKEN')  # Get the token from the environment variable set by the GitHub Action
+    prinf(access_token)
     return access_token
 
 def main():
