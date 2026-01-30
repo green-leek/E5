@@ -19,22 +19,23 @@ MSO_E5_Dev_AutoRenew is a Python application based on Git Actions that uses Micr
 
 1. Fork the MSO_E5_Dev_AutoRenew repository to your GitHub account.
 2. Register a new application in Azure Active Directory.
-    - #TODO get tennat ID etc.
 3. Set Application permissions.
     - Select the following permissions: **`files.read.all`**, **`files.readwrite.all`**, **`sites.read.all`**, **`sites.readwrite.all`**, **`user.read.all`**, **`user.readwrite.all`**, **`directory.read.all`**, **`directory.readwrite.all`**, **`mail.read`**, **`mail.readwrite`**, **`mailboxsetting.read`**, and **`mailboxsetting.readwrite`**.
     - Grant permission for all 13 selected permissions.
 
 8. Go to the project settings and from the left hand side menu select Secrets and Variables > Actions
-   
-10. #TODO Update OIDC login
+  8.1 Add the following:
+     AZURE_CLIENT_ID
+     AZURE_TENANT_ID
+10. Goto the project setting again and choose Actions menu and scroll down until you see **Workflow permissions click Read and write permission option**
 
-11. Goto the project setting again and choose Actions menu and scroll down until you see **Workflow permissions click Read and write permission option**
-12. Go to your personal settings page on GitHub, select Developer settings > Personal access tokens > Generate new token.
+11. Go to your personal settings page on GitHub, select Developer settings > Personal access tokens > Generate new token.
     - Set the name to **`GITHUB_TOKEN`**.
     - Check the options **`repo`**, **`admin:repo_hook`**, and **`workflow`**.
     - Generate the token.
-13. Click on the star button at the top right corner of the page to call it once.
-14. Click on the Actions tab above to see the log of each run and check if the API is called correctly and if there are any errors.
+      
+12. Click on the star button at the top right corner of the page to call it once.
+13. Click on the Actions tab above to see the log of each run and check if the API is called correctly and if there are any errors.
 
 ## **Additional Information**
 
