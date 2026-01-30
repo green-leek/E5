@@ -53,10 +53,9 @@ def main():
             access_token = get_access_token(endpoint)
             session = requests.Session()
             session.headers.update({
-                'Authorization': f"Bearer {access_token}",
-                'Content-Type': 'application/json'
+                'Authorization': f"Bearer {access_token}"
             })
-            response = session.get(endpoint)
+            response = session.get(endpoint).json()
             if response.status_code == 200:
                 num += 1
                 print(f'{num}th Call successful')
