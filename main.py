@@ -46,11 +46,10 @@ def get_access_token(endpoint):
 
 def main():
     random.shuffle(calls)
-    
+    endpoints = calls[random.randint(0,10)::]
     num = 0
     for endpoint in endpoints:
         try:
-            endpoints = calls[random.randint(0,10)::]
             access_token = get_access_token(endpoint)
             session = requests.Session()
             session.headers.update({
