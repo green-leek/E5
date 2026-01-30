@@ -67,7 +67,7 @@ jobs:
     - name: Get access token
       id: token
       run: |
-          echo "$(az account get-access-token --query accessToken -o tsv --resource-type ms-graph)" >> $GITHUB_ENV
+          echo "token=$(az account get-access-token --query accessToken -o tsv --resource-type ms-graph)" >> $GITHUB_ENV
         
     - name: Test Api #ApiCall
       env:
