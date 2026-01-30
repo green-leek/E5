@@ -49,17 +49,6 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         allow-no-subscriptions: true
-        
-    - id: login
-      name: Adquiring Access Token
-      uses: Azure/azure-resource-login-action@v1.1.0
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        allow-no-subscriptions: true
-        
-    - name: Copy access token to env
-      run: |
-         echo "AZURE_ACCESS_TOKEN=${{ steps.login.outputs.token }} >> $GITHUB_ENV
 
     - name: Read config from secrets  #Read Secret
       env: 
