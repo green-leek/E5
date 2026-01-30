@@ -64,12 +64,14 @@ jobs:
         sed -i '12 r configkey.txt' temp.py
         sed -i '14 r refreshtoken.txt' temp.py
 
-    - name: Call Azure API
+    - name: Get access token
+      id: token
       run: |
-        response=$(curl -s -X POST "https://graph.microsoft.com/v1.0/users" -H "Authorization: Bearer $(az account get-access-token --query accessToken --resource-type ms-graph -o tsv)")
-        echo "Response from Azure API: $response"
+          echo "::set-output name=token::$(az account get-access-token --query accessToken -o tsv)"
         
     - name: Test Api #ApiCall
+      env:
+          AZURE_ACCESS_TOKEN: ${{ steps.token.outputs.token }}
       run: | 
         echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.log
         python3 temp.py
