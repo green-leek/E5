@@ -20,7 +20,11 @@ MSO_E5_Dev_AutoRenew is a Python example application based on Git Actions using 
 1. Fork the MSO_E5_Dev_AutoRenew repository to your GitHub account.
 2. Register a new application in Azure Active Directory.
 
-3. Add Federated credential for Github Actions, enter Organization: {your Github org/username}; Repository: {Github repo name}; Entity type: {Branch} and Based on selection: {main}.
+3. Add Federated credential for Github Actions, enter 
+   - Organization: {your Github org/username};
+   - Repository: {Github repo name};
+   - Entity type: {Branch};
+   - Based on selection: {main}.
 
 4. Set Application permissions.
     - Select the following permissions: **`files.read.all`**, **`files.readwrite.all`**, **`sites.read.all`**, **`sites.readwrite.all`**, **`user.read.all`**, **`user.readwrite.all`**, **`directory.read.all`**, **`directory.readwrite.all`**, **`mail.read`**, **`mail.readwrite`**, **`mailboxsetting.read`**, and **`mailboxsetting.readwrite`**.
@@ -30,11 +34,11 @@ MSO_E5_Dev_AutoRenew is a Python example application based on Git Actions using 
 
 6. In Github your repo page, go to the project settings and from the left hand side menu select Secrets and Variables > Actions
    6.1 Add the following:
-     **`AZURE_CLIENT_ID`** - The Application (client) ID 
-     **`AZURE_TENANT_ID`** - Directory (tenant) ID
-     **`USER_ID`** - The Object ID from step 5
-     **`GIT_EMAIL`** - Email for pushing log
-     **`GIT_NAME`** - Name for pushing log
+     - **`AZURE_CLIENT_ID`** - The Application (client) ID 
+     - **`AZURE_TENANT_ID`** - Directory (tenant) ID
+     - **`USER_ID`** - The Object ID from step 5
+     - **`GIT_EMAIL`** - Email for pushing log
+     - **`GIT_NAME`** - Name for pushing log
 7. Goto the project setting again and choose Actions menu and scroll down until you see **Workflow permissions click Read and write permission option**
 
 8. Go to your personal settings page on GitHub, select Developer settings > Personal access tokens > Generate new token.
