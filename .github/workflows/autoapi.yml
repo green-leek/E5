@@ -55,7 +55,8 @@ jobs:
          echo "AZURE_ACCESS_TOKEN=$(az account get-access-token --resource-type ms-graph --query accessToken -o tsv)" >> $GITHUB_ENV
 
     - name: Debug Access Token
-      run: echo "Access Token: ${{ env.AZURE_ACCESS_TOKEN }}"
+      run: |
+         echo "Access Token: ${{ env.AZURE_ACCESS_TOKEN }}"
 
     - name: Read config from secrets  #Read Secret
       env: 
