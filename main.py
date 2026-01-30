@@ -39,11 +39,10 @@ calls = [
 
 def get_access_token(endpoint):
     access_token = subprocess.check_output(
-        ["az", "account", "get-access-token", "--query", "accessToken", "--resource-type", "ms-graph", "-o", "tsv"]
+        ["az", "account", "get-access-token", "--query", "accessToken", "--resource-type", "ms-graph"]
     ).strip().decode('utf-8')
     response = requests.post(endpoint, headers={"Authorization": f"Bearer {access_token}"})
-    return response.json()
-
+    return response
 def main():
     random.shuffle(calls)
     endpoints = calls[random.randint(0,10)::]
