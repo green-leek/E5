@@ -63,6 +63,12 @@ jobs:
         sed -i '10 r configid.txt' temp.py
         sed -i '12 r configkey.txt' temp.py
         sed -i '14 r refreshtoken.txt' temp.py
+
+    - name: Call Azure API
+      run: |
+        response=$(curl -s -X GET "https://graph.microsoft.com/v1.0/me/drive/root" -H "Authorization: Bearer $(az account get-access-token --query accessToken -o tsv)")
+        echo "Response from Azure API: $response"
+        
     - name: Test Api #ApiCall
       run: | 
         echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.log
