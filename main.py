@@ -41,7 +41,7 @@ def get_access_token(endpoint):
     access_token = subprocess.check_output(
         ["az", "account", "get-access-token", "--query", "accessToken", "--resource-type", "ms-graph", "-o", "tsv"]
     ).strip().decode('utf-8')
-    response = requests.get(endpoint, headers={"Authorization": f"Bearer {access_token}"})
+    response = requests.post(endpoint, headers={"Authorization": f"Bearer {access_token}"})
     return response.json()
 
 def main():
