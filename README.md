@@ -33,7 +33,7 @@ MSO_E5_Dev_AutoRenew is a Python example application based on Git Actions using 
 5. Go Users -> {Any user} -> Copy Object ID 
 
 6. In Github your repo page, go to the project settings and from the left hand side menu select Secrets and Variables > Actions
-   6.1 Add the following:
+   - 6.1 Add the following:
      - **`AZURE_CLIENT_ID`** - The Application (client) ID 
      - **`AZURE_TENANT_ID`** - Directory (tenant) ID
      - **`USER_ID`** - The Object ID from step 5
