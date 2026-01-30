@@ -2,7 +2,7 @@ import requests
 import json
 import time
 import random 
-import os
+import subprocess
 
 # Register the azure app first and make sure the app has the following permissions:
 # files: Files.Read.All、Files.ReadWrite.All、Sites.Read.All、Sites.ReadWrite.All
@@ -37,14 +37,17 @@ calls = [
 ]
 
 
-def get_access_token():
-    access_token = os.getenv('AZURE_ACCESS_TOKEN')  # Get the token from the environment variable set by the GitHub Action
-    return access_token
+def get_access_token(endpoint):
+    access_token = subprocess.check_output(
+        ["az", "account", "get-access-token", "--query", "accessToken", "--resource-type", "ms-graph", "-o", "tsv"]
+    ).strip().decode('utf-8')
+    response = requests.get(endpoint, headers={"Authorization": f"Bearer {access_token}"})
+    return response.json()
 
 def main():
     random.shuffle(calls)
     endpoints = calls[random.randint(0,10)::]
-    access_token = get_access_token()
+    access_token = get_access_token(endpoint)
     session = requests.Session()
     session.headers.update({
         'Authorization': 'access_token',
